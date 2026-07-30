@@ -1,0 +1,16 @@
+{
+  "name": "luminara-portal-bhutan",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Luminara, introduced plainly. A self-contained portal prepared for the Royal Government of Bhutan.",
+  "license": "UNLICENSED",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "verify": "node build.mjs && node --test \"tests/*.test.mjs\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
