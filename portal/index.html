@@ -981,6 +981,15 @@ const T = {
       allDepths:' — all three depths moving, windings redouble',
       locked:', locked', antipode:'— antipode through centre',
       turningOf:'of three depths turning',
+      lawZero:" — the count's own zero",
+      formKnot:'knot', formLink:'link', formCoil:'coil', formCircle:'circle',
+      formStrands:'rings', formOneStrand:'one strand', formGenus:'genus',
+      silence:'silence', theUnison:'the unison', theOctave:'the octave',
+      thePerfectFifth:'the perfect fifth', thePerfectFourth:'the perfect fourth',
+      theDoubleOctave:'the double octave', theTritone:'the tritone',
+      theEleventh:'the eleventh', theToneTwiceRaised:'the tone, twice raised',
+      theSixthBeyond:'the sixth beyond the octave', theAlienInterval:'the alien interval',
+      theFarDissonance:'the far dissonance', against:'against',
       replayable:'Replayable: the same seed returns the same cards, forever. There is no second draw.',
       silDescent:'descent', silWidening:'widening', silSurrender:'surrender', silRecognition:'recognition',
       h3_whatIsThis:'What is this?', h3_whatItIsNot:'What it is not', h3_transparency:'Transparency',
@@ -1035,6 +1044,15 @@ const T = {
       allDepths:' — 三层深度皆动，缠绕加倍',
       locked:'，锁定', antipode:'— 穿越中心的对极',
       turningOf:'层深度在转向，共三层',
+      lawZero:' — 计数的本零',
+      formKnot:'结', formLink:'链环', formCoil:'线圈', formCircle:'圆',
+      formStrands:'环', formOneStrand:'单环', formGenus:'亏格',
+      silence:'沉默', theUnison:'同度', theOctave:'八度',
+      thePerfectFifth:'纯五度', thePerfectFourth:'纯四度',
+      theDoubleOctave:'双八度', theTritone:'三全音',
+      theEleventh:'十一度', theToneTwiceRaised:'全音，两次升高',
+      theSixthBeyond:'八度外的六度', theAlienInterval:'异域音程',
+      theFarDissonance:'远不协和', against:'对',
       replayable:'可重现：相同种子永远返回相同牌，没有第二次抽取。',
       silDescent:'下降', silWidening:'扩展', silSurrender:'臣服', silRecognition:'认知',
       h3_whatIsThis:'这是什么？', h3_whatItIsNot:'它不是什么', h3_transparency:'透明度',
@@ -1089,6 +1107,15 @@ const T = {
       allDepths:' — གཏིང་གསུམ་ཀ་གཡོ་ཡོད',
       locked:'། མི་གཡོ', antipode:'— དཀྱིལ་བརྒྱུད་ཀྱི་མུ་མཐུད',
       turningOf:'གཏིང་གཡོ་ཡོད། གསུམ་ལས',
+      lawZero:' — གྲངས་ཀྱི་རང་གི་སྟོང་པ',
+      formKnot:'མདུད་པ', formLink:'སྦྲེལ་མ', formCoil:'འཁྱིལ་བ', formCircle:'སྒོར་མོ',
+      formStrands:'འཛིང', formOneStrand:'འཛིང་གཅིག', formGenus:'རིགས',
+      silence:'ལྟེ', theUnison:'གཅིག་མཐུན', theOctave:'རྟགས་བརྒྱད',
+      thePerfectFifth:'ཚད་ལྔ་པ', thePerfectFourth:'ཚད་བཞི་པ',
+      theDoubleOctave:'རྟགས་བཅུ་དྲུག', theTritone:'ཚད་གསུམ་པ',
+      theEleventh:'ཚད་བཅུ་གཅིག', theToneTwiceRaised:'སྒྲ་གཉིས་པོ་ཡར་བསྟད',
+      theSixthBeyond:'རྟགས་བརྒྱད་ལས་འདས་པའི་ཚད་དྲུག', theAlienInterval:'མི་མཐུན་ཡང',
+      theFarDissonance:'རྒྱང་གི་མི་མཐུན', against:'ལ',
       replayable:'བསྐྱར་དུ་འབྱུང་ཐུབ། ས་བོན་གཅིག་པས་རྟག་ཏུ་བཀྲ་ལྡེ་གཅིག་པ་སླར་ལོག་ཐུབ། བཀྲ་ལྡེ་ལན་གཉིས་འདེབས་མི་ཐུབ།',
       silDescent:'མར་འབབ', silWidening:'ཡངས་པ', silSurrender:'གཏོང་བ', silRecognition:'ངོ་ཤེས་པ',
       h3_whatIsThis:'འདི་ཅི་རེད?', h3_whatItIsNot:'འདི་མིན་པ', h3_transparency:'གསལ་བ',
@@ -1129,6 +1156,26 @@ function tPos(key) {
   const m = {root:['posRoot','posRootGloss'], present:['posPresent','posPresentGloss'], becoming:['posBecoming','posBecomingGloss']};
   const [k, kg] = m[key] || [key, key];
   return { label: t(k), gloss: t(kg) };
+}
+function tIntervalName(name) {
+  const map = {
+    'silence':'silence','the unison':'theUnison','the octave':'theOctave',
+    'the perfect fifth':'thePerfectFifth','the perfect fourth':'thePerfectFourth',
+    'the double octave':'theDoubleOctave','the tritone':'theTritone',
+    'the eleventh':'theEleventh','the tone, twice raised':'theToneTwiceRaised',
+    'the sixth beyond the octave':'theSixthBeyond','the alien interval':'theAlienInterval',
+    'the far dissonance':'theFarDissonance',
+  };
+  return t(map[name]) || name;
+}
+function tFormStr(f) {
+  const kind = t({'knot':'formKnot','link':'formLink','coil':'formCoil','circle':'formCircle'}[f.kind]) || f.kind;
+  const strands = f.strands > 1 ? f.strands + ' ' + t('formStrands') : t('formOneStrand');
+  return kind + ', ' + strands + ', ' + t('formGenus') + ' ' + f.genus;
+}
+function tIntervalStr(iv) {
+  const name = tIntervalName(iv.name);
+  return name + ' (' + iv.ratio + ')';
 }
 
 const DLG = {
@@ -1861,10 +1908,10 @@ function cardBlockHTML(k, standing) {
   const bcCard = k.turning>0 ? card(k.becoming) : null;
   const props = [
     [t('propHouse'), hname+' · '+tHouseGloss(hname)+' · '+tHouseMetal(hname)],
-    [t('propLaw'),   'q = '+(k.q>0?'+':'')+k.q+(k.q===0?" — the count's own zero":'')],
+    [t('propLaw'),   'q = '+(k.q>0?'+':'')+k.q+(k.q===0?t('lawZero'):'')],
     [t('propVoice'), 'p = '+k.p+(k.p===7?t('allDepths'):'')],
-    [t('propForm'),  k.form.kind+(k.form.strands>1?', '+k.form.strands+' rings':', one strand')+', genus '+k.form.genus],
-    [t('propSound'), k.interval.name+' ('+k.interval.ratio+')'+(k.interval.locked?t('locked'):'')],
+    [t('propForm'),  tFormStr(k.form)],
+    [t('propSound'), tIntervalStr(k.interval)+(k.interval.locked?t('locked'):'')],
     [t('propAnswer'),k.answer+' · '+tName(anCard.n)+' '+t('antipode')],
     [t('propSlope'), k.turning===0?t('noSlope'):tName(bcCard.n)+' — '+k.turning+' '+t('turningOf')],
   ].map(([a,b])=>`<span class="pk">${esc(a)}</span><span class="pv">${esc(b)}</span>`).join('');
@@ -2011,7 +2058,7 @@ function rebuildDeckTable() {
 <td class="cd">${esc(k.code)}</td>
 <td class="q">${k.q>0?'+':''}${k.q}</td>
 <td class="p">${k.p}</td>
-<td class="iv">${esc(k.interval.name)}</td>
+<td class="iv">${esc(tIntervalName(k.interval.name))}</td>
 <td class="an">${k.answer} · ${esc(tName(card(k.answer).n))}</td>
 <td class="bc">${esc(bcName)}</td>`;
     tbody.appendChild(tr);
