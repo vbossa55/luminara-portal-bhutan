@@ -1111,6 +1111,177 @@ function tPos(key) {
   return { label: t(k), gloss: t(kg) };
 }
 
+const DLG = {
+  en: {
+    about: `<h3>What is this?</h3>
+<p>Luminara is a <b>27-card system</b> for counsel and reflection. It was prepared for the Royal Government of Bhutan as part of <b>Project 108 at Gelephu Mindfulness City</b>.</p>
+<p>The deck has exactly 27 cards — not 26, not 28. Nobody chose that number: it follows from the simplest possible question applied twice. Three motions, across three depths. Three raised to three.</p>
+<h3>What it is not</h3>
+<p>Luminara does <b>not predict</b> the future. It does <b>not assign meanings</b> to dates. A date cannot seed a cast — the system actively prevents this. There is no auspicious hour and no forbidden one.</p>
+<p>No card is better or worse than another. Nothing here connects to a network. The portal works entirely offline — the same file on a USB stick, anywhere.</p>
+<h3>Transparency</h3>
+<p>Every card's figure (the mandala, the knot) is <b>computed from the card's mathematics</b>, not drawn by hand. No illustration was made. The code is open: everything it does is visible here in this file.</p>`,
+    system: `<h3>Three Motions</h3>
+<p>Ask the smallest possible question. What can a thing do?</p>
+<div class="motion-grid">
+  <span class="motion-sym">●</span><span class="motion-nm">Still</span><span class="motion-gl">holds, remains, does not move</span>
+  <span class="motion-sym">—</span><span class="motion-nm">Flowing</span><span class="motion-gl">extends outward, gives</span>
+  <span class="motion-sym">~</span><span class="motion-nm">Turning</span><span class="motion-gl">draws inward, reflects</span>
+</div>
+<p>There is no fourth. Oscillation is turning named twice; acceleration is the flowing of flow. Every candidate collapses to one of the three.</p>
+<h3>Three Depths</h3>
+<p>Draw any boundary and the world divides into exactly three regions: inside, outside, and the line where they meet.</p>
+<div class="motion-grid">
+  <span class="motion-sym">·</span><span class="motion-nm">Field</span><span class="motion-gl">the world — heaviest weight</span>
+  <span class="motion-sym">·</span><span class="motion-nm">Relation</span><span class="motion-gl">the between — medium weight</span>
+  <span class="motion-sym">·</span><span class="motion-nm">Core</span><span class="motion-gl">the heart — lightest weight</span>
+</div>
+<p>Three motions × three depths = <b>27</b>. The number closed itself.</p>
+<h3>The Three Houses</h3>
+<div class="house-row">
+  <span class="house-tag aum">AUM · bronze · what could be</span>
+  <span class="house-tag ma">MA · silver · what cuts</span>
+  <span class="house-tag ra">RA · gold · what radiates</span>
+</div>
+<p>A card's house is set by its heaviest digit (the Field motion). AUM cards hold still in the world; MA cards move outward; RA cards turn inward.</p>
+<h3>The Law (q)</h3>
+<p>Each card has a number q in balanced ternary: <b>q = 9·s₀ + 3·s₁ + s₂</b>, where each s ∈ {−1, 0, +1}. This maps every card to a unique integer from −13 to +13. The Seed sits at zero. The Scar at +13. The Return at −13.</p>
+<h3>The Voice (p)</h3>
+<p>p counts the moving depths of a card. One more than the number of non-still positions — and when all three depths move, the windings redouble: p = 7.</p>
+<h3>The Four Silences</h3>
+<p>Four of the 27 cards do not answer. They ask instead. When you draw a Silence, the card poses a question and waits. The four Silences are: <b>descent</b> (4), <b>widening</b> (16), <b>surrender</b> (22), <b>recognition</b> (25).</p>
+<blockquote>A reading that never fell silent would be lying four cells in twenty-seven.<cite>The Light of Luminara, XI</cite></blockquote>
+<h3>Answer &amp; Becoming</h3>
+<p>Every card has an <b>answer</b>: its antipodal card through the cube's centre, found by negating each digit. Applying the answer twice returns to the original.</p>
+<p><b>Becoming</b> is where a card settles: every turning depth resolves to still. Cards with no turning depths have no slope — they are already still.</p>
+<h3>The Figure</h3>
+<p>Each card's artwork is a torus knot computed from p and q. The mandala (from above) has |q| petals. The knot (from the side) winds p times one way and |q| the other. When p and |q| share a factor, the strand closes early and the figure becomes a link — several rings bound together.</p>`,
+    cast: `<h3>The Seed</h3>
+<p>Every cast is seeded by a string. The same seed always returns the same card — forever. This is intentional: a cast is <b>declared and replayable</b>. Anyone with the seed can verify the draw.</p>
+<p>Leave the field empty and a seed will be generated from cryptographic randomness and declared in full at the bottom of your reading.</p>
+<p>You may paste any public randomness value (a beacon hash, a shared phrase) as the seed. Nothing here fetches anything — all seeding is done by you.</p>
+<h3>Cast One</h3>
+<p>Draws a single card. Use this for a moment of direct reflection — one position, one question, one answer (or one silence).</p>
+<h3>Cast Three</h3>
+<p>Draws three cards into three fixed positions using Fisher–Yates shuffle (no replacement): <b>root</b> (what is knotted in and cannot be undone), <b>present</b> (the live cut of the moment), and <b>becoming</b> (what draws forward).</p>
+<h3>The Guard</h3>
+<p>A date <b>cannot</b> seed a cast. The system throws by name if a Date object is passed. There is no auspicious hour and no forbidden one — Luminara does not do electional work. That office belongs to those who hold it.</p>
+<blockquote>The moment a calendar exists, the electional question knocks: which hour is auspicious? … There is no auspicious hour and no forbidden one.<cite>The Astrolabe of the 27, IX</cite></blockquote>`,
+  },
+  zh: {
+    about: `<h3>这是什么？</h3>
+<p>Luminara 是一套用于建议与反思的 <b>27 张牌体系</b>。它作为<b>格勒普正念城第 108 号项目</b>的一部分，为不丹皇家政府准备。</p>
+<p>牌组恰好有 27 张——不多不少。没有人选择这个数字：它来自最简单的问题被应用两次。三种运动，跨越三层深度。三的三次方。</p>
+<h3>它不是什么</h3>
+<p>Luminara <b>不预测</b>未来。它<b>不将含义赋予</b>日期。日期不能作为占卜种子——系统会主动阻止这一点。没有吉祥时辰，也没有禁忌时辰。</p>
+<p>没有哪张牌比另一张更好或更坏。这里没有任何网络连接。此门户完全离线运作——同一个文件放在 USB 中，随处可用。</p>
+<h3>透明度</h3>
+<p>每张牌的图像（曼陀罗、结）均<b>由牌的数学计算得出</b>，而非手绘。没有插图是手工制作的。代码是开放的：它所做的一切在此文件中均可见。</p>`,
+    system: `<h3>三种运动</h3>
+<p>提出最小的问题。一件事能做什么？</p>
+<div class="motion-grid">
+  <span class="motion-sym">●</span><span class="motion-nm">静止</span><span class="motion-gl">持守，保持，不移动</span>
+  <span class="motion-sym">—</span><span class="motion-nm">流动</span><span class="motion-gl">向外延伸，给予</span>
+  <span class="motion-sym">~</span><span class="motion-nm">转动</span><span class="motion-gl">向内收敛，反思</span>
+</div>
+<p>没有第四种。振荡是被命名两次的转动；加速是流动的流动。每一个候选都归结为三者之一。</p>
+<h3>三层深度</h3>
+<p>画任何边界，世界都分为恰好三个区域：内部、外部，以及交界线。</p>
+<div class="motion-grid">
+  <span class="motion-sym">·</span><span class="motion-nm">场域</span><span class="motion-gl">世界 — 最重的权重</span>
+  <span class="motion-sym">·</span><span class="motion-nm">关系</span><span class="motion-gl">之间 — 中等权重</span>
+  <span class="motion-sym">·</span><span class="motion-nm">核心</span><span class="motion-gl">心 — 最轻的权重</span>
+</div>
+<p>三种运动 × 三层深度 = <b>27</b>。这个数字自我封闭了。</p>
+<h3>三个宫位</h3>
+<div class="house-row">
+  <span class="house-tag aum">AUM · 铜 · 可能之物</span>
+  <span class="house-tag ma">MA · 银 · 切割之物</span>
+  <span class="house-tag ra">RA · 金 · 辐射之物</span>
+</div>
+<p>牌的宫位由其最重的数字（场域运动）决定。AUM 牌在世界中静止；MA 牌向外运动；RA 牌向内转动。</p>
+<h3>律（q）</h3>
+<p>每张牌有一个平衡三进制数 q：<b>q = 9·s₀ + 3·s₁ + s₂</b>，其中每个 s ∈ {−1, 0, +1}。这将每张牌映射到 −13 至 +13 之间的唯一整数。种子在零处。伤痕在 +13。归来在 −13。</p>
+<h3>声（p）</h3>
+<p>p 计算牌的运动深度数。比非静止位置数多一——当所有三层深度都运动时，缠绕加倍：p = 7。</p>
+<h3>四种沉默</h3>
+<p>27 张牌中有四张不回答，它们反问。当你抽到一张沉默牌时，该牌提出一个问题并等待。四种沉默是：<b>下降</b>（4）、<b>扩展</b>（16）、<b>臣服</b>（22）、<b>认知</b>（25）。</p>
+<blockquote>一次从未沉默的解读，在二十七格中将有四格在说谎。<cite>《光明录》，第十一章</cite></blockquote>
+<h3>答与成为</h3>
+<p>每张牌都有一个<b>答</b>：通过立方体中心的对极牌，通过对每个数字取反得到。对答应用两次返回原始牌。</p>
+<p><b>成为</b>是牌安定之处：每个转动深度解析为静止。没有转动深度的牌没有坡度——它们已然静止。</p>
+<h3>图像</h3>
+<p>每张牌的图像是由 p 和 q 计算的环面结。从上方看的曼陀罗有 |q| 片花瓣。从侧面看的结以一种方式绕 p 次，另一种方式绕 |q| 次。当 p 和 |q| 有公因子时，链条提前闭合，图像变成一个链接——几个环相互缠绕。</p>`,
+    cast: `<h3>种子</h3>
+<p>每次占卜都由一个字符串作为种子。相同的种子始终返回相同的牌——永远如此。这是有意为之：占卜是<b>声明且可重现的</b>。任何拥有种子的人都可以验证抽取结果。</p>
+<p>将字段留空，系统将从密码学随机性中生成种子，并在读数底部完整声明。</p>
+<p>你可以粘贴任何公共随机值（信标哈希、共享短语）作为种子。这里不获取任何外部数据——所有种子都由你提供。</p>
+<h3>抽一张</h3>
+<p>抽取单张牌。用于直接反思的时刻——一个位置，一个问题，一个答案（或一种沉默）。</p>
+<h3>抽三张</h3>
+<p>使用 Fisher–Yates 洗牌（无替换）将三张牌抽入三个固定位置：<b>根</b>（深植其中、无法解开之物）、<b>当下</b>（此刻的切面），以及<b>成为</b>（引领前行之物）。</p>
+<h3>守卫</h3>
+<p>日期<b>不能</b>作为占卜种子。若传入 Date 对象，系统会按名称抛出错误。没有吉祥时辰，也没有禁忌时辰——Luminara 不做择时工作。那是属于持守者的职责。</p>
+<blockquote>一旦历法存在，择时问题便会叩门：哪个时辰是吉祥的？……没有吉祥时辰，也没有禁忌时辰。<cite>《二十七星盘》，第九章</cite></blockquote>`,
+  },
+  dz: {
+    about: `<h3>འདི་ཅི་རེད?</h3>
+<p>Luminara འདི་བསམ་གཞིག་དང་གནས་ལུགས་སྟོན་པའི་ <b>བཀྲ་ལྡེ་ཉི་ཤུ་རྩ་བདུན་གྱི་མ་ལག</b> ཅིག་ཡིན། འདི་<b>གེ་ལེ་ཕུ་གནས་ཡིད་བཞིན་གྲོང་ཁྱེར་གྱི་ལས་གཞི་ ༡༠༨</b>འི་ཆ་ཤས་སུ་འབྲུག་གི་རྒྱལ་སྲིད་གཞུང་ལ་སྒྲིག་བཀོད་བྱས་པ་ཡིན།</p>
+<p>བཀྲ་ལྡེ་རྩ་བ་ཉི་ཤུ་རྩ་བདུན་ཡོད། མེད་ལྷག་མེད། ཨང་འདི་སུས་ཀྱང་མ་བདམས། རང་བྱུང་གིས་འབྱུང་། འགུལ་སྐྱོད་གསུམ། གཏིང་གསུམ། གསུམ་གྱི་གསུམ་བའི་གནས་ཚུལ།</p>
+<h3>འདི་མིན་པ</h3>
+<p>Luminara འདིས་མ་འོངས་པ་<b>ལུང་བསྟན་མི་བྱེད</b>། ཉིན་མཚན་ལ་དོན་སྙིང་<b>མི་སྦྱར</b>། ཚེས་གྲངས་ས་བོན་དུ་མི་ཆོག — མ་ལག་འདིས་རར་ཐིམ་བཀག་ཡོད། བཀྲ་ལྡེ་གཅིག་གཞན་ལས་ལེགས་ངན་མི་འདུག</p>
+<p>འདི་དྲ་རྒྱར་འབྲེལ་མི་བྱེད། USB ནང་ཡང་ཆ་རྐྱེན་མི་དགོས་པར་བེད་སྤྱོད་བྱེད་ཐུབ།</p>
+<h3>གསལ་བ</h3>
+<p>བཀྲ་ལྡེ་ཡི་རི་མོ་ <b>རྩིས་ལས་བྱུང་བ</b> ཡིན། ལག་རྩལ་གྱིས་བྲིས་མིན། རྟ་འཚོལ་མ་བྱས། མ་ལག་ཁ་ཕྱེ་ཡོད། ཚུལ་ཇི་ལྟར་བྱེད་པ་ཐམས་ཅད་ཡིག་ཆ་འདིའི་ནང་མཐོང་ཐུབ།</p>`,
+    system: `<h3>འགུལ་སྐྱོད་གསུམ</h3>
+<p>ཆུང་ཤོས་ཀྱི་དྲི་བ་དྲིས། དངོས་པོ་གཅིག་གིས་ཅི་བྱེད་ཐུབ?</p>
+<div class="motion-grid">
+  <span class="motion-sym">●</span><span class="motion-nm">གནས་པ</span><span class="motion-gl">བཟུང་། མི་གཡོ</span>
+  <span class="motion-sym">—</span><span class="motion-nm">འབབ་པ</span><span class="motion-gl">ཕྱིར་སྦུགས། སྤྲོད་པ</span>
+  <span class="motion-sym">~</span><span class="motion-nm">འཁོར་བ</span><span class="motion-gl">ནང་དུ་འདུ། བསམ་གཞིག</span>
+</div>
+<p>བཞི་པ་མེད། འགུལ་སྐྱོད་གསུམ་ལས་གཞན་མེད།</p>
+<h3>གཏིང་གསུམ</h3>
+<p>མཐའ་དཔྱད་ན་འཛམ་གླིང་ཁྱབ་ཡུལ་གསུམ་དུ་དབྱེ། ནང། ཕྱི། མཐའ།</p>
+<div class="motion-grid">
+  <span class="motion-sym">·</span><span class="motion-nm">ས་ཞིང</span><span class="motion-gl">འཛམ་གླིང — ལྗིད་ཆེ</span>
+  <span class="motion-sym">·</span><span class="motion-nm">འབྲེལ་བ</span><span class="motion-gl">བར་མ — ལྗིད་འབྲིང</span>
+  <span class="motion-sym">·</span><span class="motion-nm">སྙིང་པོ</span><span class="motion-gl">སྙིང་ — ལྗིད་ཆུང</span>
+</div>
+<p>འགུལ་སྐྱོད་གསུམ × གཏིང་གསུམ = <b>༢༧</b>། ཨང་འདི་རང་བཞིན་གྱིས་ཐིམ།</p>
+<h3>ཁང་གསུམ</h3>
+<div class="house-row">
+  <span class="house-tag aum">AUM · ལི · གང་ཡོད་ཀྱི་ཁུལ</span>
+  <span class="house-tag ma">MA · དངུལ · གཅོད་མཁན</span>
+  <span class="house-tag ra">RA · གསེར · བཀྲམ་མཁན</span>
+</div>
+<p>བཀྲ་ལྡེའི་ཁང་སོ་རང་གི་ལྗིད་ཆེ་ཤོས་ཀྱི་ཨང་ (ས་ཞིང་གི་འགུལ་སྐྱོད) ལས་གཏན་ཁེལ། AUM བཀྲ་ལྡེ་འཛམ་གླིང་ནང་གནས། MA བཀྲ་ལྡེ་ཕྱིར་འགུལ། RA བཀྲ་ལྡེ་ནང་དུ་འཁོར།</p>
+<h3>ཁྲིམས (q)</h3>
+<p>བཀྲ་ལྡེ་རེར་q ཡོད། <b>q = 9·s₀ + 3·s₁ + s₂</b>། s ∈ {−1, 0, +1}། ས་བོན་q=0། རྨ་ཤུལ་q=+13། ཕྱིར་འོང་q=−13།</p>
+<h3>སྒྲ (p)</h3>
+<p>p འདི་གཡོ་བའི་གཏིང་གི་གྲངས་ཡིན། གཏིང་གསུམ་ཀ་གཡོ་ན་p=7།</p>
+<h3>ལྟེ་བཞི</h3>
+<p>བཀྲ་ལྡེ་ཉི་ཤུ་རྩ་བདུན་ལས་བཞི་ལན་མི་འདེབས། དྲི་བ་འདེབས། ལྟེ་བཞི་ནི: <b>མར་འབབ</b> (4)། <b>ཡངས་པ</b> (16)། <b>གཏོང་བ</b> (22)། <b>ངོ་ཤེས་པ</b> (25)།</p>
+<blockquote>ལྟེ་མེད་པར་བལྟས་པ་ཞིག་ཉི་ཤུ་རྩ་བདུན་ལས་བཞིར་དྲང་མིན་ལབ་ཀྱིན་ཡོད།<cite>གསལ་སྒྲོན། XI</cite></blockquote>
+<h3>ལན་དང་འགྱུར</h3>
+<p>བཀྲ་ལྡེ་རེར་<b>ལན</b>་ཡོད། གཞི་དཀྱིལ་བརྒྱུད་ཀྱི་མུ་མཐུད་བཀྲ་ལྡེ། ལན་ལན་གཉིས་བཀོལ་ན་རང་བྱུང་ལ་ལོག་ཡོང་།</p>
+<p><b>འགྱུར</b>་ནི་བཀྲ་ལྡེ་གནས་སར་ཐུག་སའི་ས་གནས། འཁོར་བའི་གཏིང་ཐམས་ཅད་གནས་སུ་ཐིམ།</p>
+<h3>རི་མོ</h3>
+<p>བཀྲ་ལྡེ་རེའི་རི་མོ་p དང་q ལས་རྩིས་བྱུང་གི་ torus knot ཡིན། གཡས་ནས་བལྟས་ན་|q| ཤིང་ལྡུམ་ཡོད། ཕྱོགས་ནས་བལྟས་ན་p ལན་དང་|q|ལན་འཁྱིལ།</p>`,
+    cast: `<h3>ས་བོན</h3>
+<p>བཀྲ་ལྡེ་རེར་ཡིག་ཕྲན་གཅིག་ས་བོན་དུ་བཀོལ། ས་བོན་གཅིག་པས་རྟག་ཏུ་བཀྲ་ལྡེ་གཅིག་པ་ཐོབ། <b>བྱ་བ་བསྒྲགས་ཤིང་བསྐྱར་ཞིབ་བྱེད་ཐུབ།</b> ས་བོན་ཡོད་མཁན་ཀུན་གྱིས་བདེན་དཔང་བྱེད་ཐུབ།</p>
+<p>ས་བོན་ཡིག་ཁུང་སྟོང་བཞག་ན་གོ་སྒྲིག་གི་རང་འབྱུང་ས་བོན་བསྐྲུན་ཏེ་ལྟེའི་མཐར་བསྒྲགས་ཀྱི་རེད།</p>
+<p>གོང་གི་རང་འབྱུང་གནས་ཚུལ་ (beacon hash, ཡིག་ཕྲན་མཉམ་བཀོལ) ས་བོན་དུ་འབྲི་ཆོག། གཞི་ནས་ཕྱི་ལ་མི་འབྲེལ — ས་བོན་ཐམས་ཅད་ཁྱོད་ཀྱིས་གཏན་འཁེལ།</p>
+<h3>གཅིག་བཀྲ</h3>
+<p>བཀྲ་ལྡེ་གཅིག་འདེམས། ཐད་ཀར་བསམ་གཞིག་གི་སྐབས་སུ་བེད་སྤྱོད — གནས་གཅིག། དྲི་བ་གཅིག། ལན་གཅིག (ཡང་ན་ལྟེ་གཅིག)།</p>
+<h3>གསུམ་བཀྲ</h3>
+<p>Fisher–Yates འདྲེ་བཤོལ་གྱིས་བཀྲ་ལྡེ་གསུམ་གནས་གསུམ་དུ་འདེམས། <b>རྩ</b> (ནང་མདུད་མི་གྲོལ་བ)། <b>ད་ལྟ</b> (ད་ལྟའི་གཅོད་ཚུལ)། <b>འགྱུར</b> (མདུན་དུ་འདྲེན་མཁན)།</p>
+<h3>སྲུང་མ</h3>
+<p>ཚེས་གྲངས་ས་བོན་དུ་<b>མི་ཆོག</b>། Date object བཀོལ་ན་མ་ལག་གིས་ཐེར་འདོན་བྱེད། བཀྲ་ལྡེ་འདེབས་ཚེ་ལེགས་ཉིན་མེད། Luminara འདིས་ཉིན་རྩིས་ཀྱི་ལས་མི་བྱེད།</p>
+<blockquote>ལོ་ཐོ་ཡོད་ན་དུས་བཀྲའི་དྲི་བ་འབྱུང་། ལེགས་ཉིན་གང་? … ལེགས་ཉིན་མེད། ངན་ཉིན་མེད།<cite>ཉི་ཤུ་རྩ་བདུན་གྱི་དཔྱ་ཆས། IX</cite></blockquote>`,
+  },
+};
+
 function applyLang(lang) {
   currentLang = lang;
   document.documentElement.lang = lang==='dz'?'dz':lang==='zh'?'zh':'en';
@@ -1152,14 +1323,10 @@ function applyLang(lang) {
   if (hh[1]) hh[1].textContent = t('deckHouseMA');
   if (hh[2]) hh[2].textContent = t('deckHouseRA');
 
-  const dlgH3s = [
-    ['#d-about h3', ['h3_whatIsThis','h3_whatItIsNot','h3_transparency']],
-    ['#d-system h3', ['h3_threeMotions','h3_threeDepths','h3_threeHouses','h3_theLaw','h3_theVoice','h3_fourSilences','h3_answerBecoming','h3_theFigure']],
-    ['#d-cast h3', ['h3_theSeed','h3_castOne','h3_castThree','h3_theGuard']],
-  ];
-  dlgH3s.forEach(([sel, keys])=>{
-    document.querySelectorAll(sel).forEach((el,i)=>{ if(keys[i]) el.innerHTML=t(keys[i]); });
-  });
+  const dlg = DLG[lang] || DLG.en;
+  document.querySelector('#d-about .dlg-body').innerHTML  = dlg.about;
+  document.querySelector('#d-system .dlg-body').innerHTML = dlg.system;
+  document.querySelector('#d-cast .dlg-body').innerHTML   = dlg.cast;
 
   rebuildDeckTable();
 
